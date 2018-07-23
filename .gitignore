@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/PurchaseTrackerDatabase/bin/Debug
+/PurchaseTrackerDatabase/obj/Debug
+/PurchaseTrackerDatabase/PurchaseTrackerDatabase.publish.xml
+/PurchaseTrackerDatabase/PurchaseTrackerDatabase.sqlproj.user
+/PurchaseTrackerDataAccess/obj
+/PurchaseTrackerDataAccess/bin/Debug/netcoreapp2.0
+/packages
+/PurchaseTrackerDatabase/PurchaseTrackerDatabase.jfm
+/PurchaseTrackerDatabase/PurchaseTrackerDatabase.dbmdl

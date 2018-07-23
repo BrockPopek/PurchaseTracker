@@ -1,0 +1,52 @@
+<h1>Purchases</h1>
+
+<p *ngIf="!purchases"><em>Loading...</em></p>
+
+<p>
+    <a [routerLink]="['/purchase/create']">Add New</a>
+</p>
+
+<table class='table' *ngIf="purchases">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Purchase Date</th>
+            <th>Payee Name</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Memo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let purchase of purchases">
+            <td>{{ purchase.purchaseId }}</td>
+            <td>{{ purchase.purchaseDate | date:'MM/dd/yyyy' }}</td>
+            <td>{{ purchase.payeeName }}</td>
+            <td>{{ purchase.category?.categoryName }}</td>
+            <td>{{ purchase.amount | currency:'USD':true }}</td>
+            <td>{{ purchase.memo }}</td>
+            <td>
+            <td>
+                <a [routerLink]="['/purchase/edit/', purchase.purchaseId]">Edit</a> |
+                <a [routerLink]="" (click)="delete(purchase.purchaseId)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p></p>
+<table class='table' *ngIf="purchases">
+    <thead>
+        <tr>
+            <th>Total Transactions</th>
+            <th>Total Amount of Purchases</th>
+            <th>Average Amount of Purchases</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ totalTransactions }}</td>
+            <td>{{ totalAmount | currency:'USD':true }}</td>
+            <td>{{ averageAmount | currency:'USD':true }}</td>
+        </tr>
+    </tbody>
+</table>

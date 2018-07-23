@@ -1,0 +1,60 @@
+<h1>{{title}}</h1>
+<h3>Purchase</h3>
+<hr />
+<form (ngSubmit)="save()">
+    <div class="form-group row">
+        <label class="control-label col-md-12">Purchase Date</label>
+        <div class="col-md-4">
+            <input class="form-control" type="date" [ngModel]="purchase.purchaseDate | date:'yyyy-MM-dd'" (ngModelChange)="purchase.purchaseDate = $event"
+                   [value]="purchase.purchaseDate | date:'yyyy-MM-dd'" #purchase.purchaseDate="ngModel" name="purchaseDate" min="2000-01-01" required="required">
+        </div>
+        <span class="text-danger" *ngIf="purchaseDateInvalid">
+            Purchase Date is invalid or must be greater than 1/1/2000
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Payee Name</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" max="200" [(ngModel)]="purchase.payeeName" name="payeeName" required="required">
+        </div>
+        <span class="text-danger" *ngIf="payeeNameInvalid">
+            Payee Name is required.
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Category</label>
+        <div class="col-md-4">
+            <select class="form-control" [(ngModel)]="purchase.categoryId" required="required" name="categoryId">
+                <option *ngFor="let item of categories" value={{item.categoryId}}>{{item.categoryName}}</option>
+            </select>
+        </div>
+        <span class="text-danger" *ngIf="categoryIdInvalid">
+            Category is required
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Amount</label>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input class="form-control" type="number" [(ngModel)]="purchase.amount" name="amount"
+                       min="0.01" step="0.01" max="100000" (blur)="setCurrency()" required="required">
+            </div>
+            <span class="text-danger" *ngIf="amountInvalid">
+                Amount is required
+            </span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Memo</label>
+        <div class="col-md-4">
+            <input class="form-control" type="text" maxlength="500" [(ngModel)]="purchase.memo" name="memo">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-default">Save</button>
+        <button class="btn" (click)="cancel()">Cancel</button>
+    </div>
+</form>
